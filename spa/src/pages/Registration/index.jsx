@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Form, Row, Col, message } from 'antd';
+import { Form, Row, Col, message,DatePicker } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import Button from 'components/Button';
@@ -15,20 +15,27 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
+    values.preventDefault();
     try {
       setLoading(true);
       let response = await APIClient.request(
-        '/api/auth/signup',
-        {username: values.username,email: values.email, password: values.password, roles : ["user"]},
+        '/api/auth/register',
+        {
+            name: values.name,
+            last_name:values.lastName,
+            birthday:values.date,
+            username: values.username,
+            email: values.email,
+            password: values.password,
+        },
         'POST'
       );
-      // jwt.saveToken(response.token, response.expiresIn);
+      message.error(response);
       setLoading(false);
       message.info("You are sucesfully registered");
-      // history.push("/login");
-    //   NavLink.to("/login");
     } catch (err) {
       message.error("Username or password incorrect!");
+
       console.log(err);
       setLoading(false);
     }
@@ -48,6 +55,29 @@ const Signin = () => {
             }}
             onFinish={onFinish}
           >
+        <Form.Item
+          name="firstName"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your first name!',
+            },
+          ]}
+        >
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="FirstName" />
+        </Form.Item>
+
+        <Form.Item
+          name="lastName"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your last name!',
+            },
+          ]}
+        >
+          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="LastName" />
+        </Form.Item>
             <Form.Item
               name="username"
               rules={[
@@ -58,6 +88,9 @@ const Signin = () => {
               ]}
             >
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+            </Form.Item>
+            <Form.Item   name= "date">
+                <DatePicker  placeholder="birthday" />
             </Form.Item>
             <Form.Item
               name="email"
@@ -86,7 +119,10 @@ const Signin = () => {
               />
             </Form.Item>
             <Form.Item>
-              <Button loading={loading} block type="primary" htmlType="submit" className="login-form-button">
+              <Button loading={loading}
+               block type="primary" htmlType="submit"
+            // onClick={onFinish}
+               className="login-form-button">
                 Sign up
               </Button>
               <NavLink to='/login'>Login in</NavLink>
