@@ -16,7 +16,7 @@ const Router = ({walletAmount, getWalletAmount}) => {
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/wallet" component={Wallet} />
       <Route exact path="/get-wallet-actions" component={HistoryOfWallet} />
-      {/* <Route exact path="/history-chart" component={HistoryOfWallet} /> */}
+      <Route exact path="/profile" component={Profile} />
       <Route exact path="*" component={PageNotFound} />
 
     </Switch>

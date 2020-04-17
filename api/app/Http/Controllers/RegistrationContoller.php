@@ -17,10 +17,10 @@ class RegistrationContoller extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::create(request(['name', 'email', 'password']));
+        $user = User::create(request(['name','last_name','birthday', 'email', 'password']));
 
         auth()->login($user);
 
-        return redirect()->to('/games');
+
     }
 }

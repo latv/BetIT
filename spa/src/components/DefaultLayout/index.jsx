@@ -93,7 +93,7 @@ const DefaultLayout = () => {
                   </Dropdown>
                 </Spin>
               </div>
-              <NavLink to="/wallet">
+              <NavLink to="/profile">
                 <UserOutlined />
               </NavLink>
               <LogoutOutlined onClick={logOut} />
@@ -106,7 +106,7 @@ const DefaultLayout = () => {
           <Col xs={xsWidth} md={mdWidth} lg={lgWidth}>
             <div className="app-container">
               <Router walletAmount={walletAmount} getWalletAmount={getWalletAmount}/>
-              
+
             </div>
           </Col>
         </Row>
