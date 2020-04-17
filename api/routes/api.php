@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::group(['prefix' => 'bet'], function () {
         Route::post('make-bet', 'BetController@makeBet');
     });
-    
+
     Route::group(['prefix' => 'match'], function () {
         Route::get('get-matches', 'MatchController@getMatches');
         Route::get('get-upcoming-matches', 'MatchController@getUpcomingMatches');
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 });
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
- 
+    Route::post('register', 'AuthController@register');
     Route::group(['middleware' => 'auth.jwt'], function () {
         Route::get('me', 'AuthController@me');
         Route::post('logout', 'AuthController@logout');
