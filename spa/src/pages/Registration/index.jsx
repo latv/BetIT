@@ -4,27 +4,32 @@ import { withRouter } from 'react-router-dom';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import Button from 'components/Button';
 import Input from 'components/Input';
+// import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import APIClient from 'utils/apiClient';
-import jwt from 'utils/jwt';
-import './styles.scss';
-import { NavLink } from 'react-router-dom';
 
-const Login = ({history}) => {
+import { NavLink } from 'react-router-dom';
+// import './styles.scss';
+
+const Signin = () => {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
     try {
       setLoading(true);
       let response = await APIClient.request(
-        '/api/auth/login',
-        {username: values.username, password: values.password},
+        '/api/auth/signup',
+        {username: values.username,email: values.email, password: values.password, roles : ["user"]},
         'POST'
       );
-      jwt.saveToken(response.token, response.expiresIn);
+      // jwt.saveToken(response.token, response.expiresIn);
       setLoading(false);
-      history.replace('/');
+      message.info("You are sucesfully registered");
+      // history.push("/login");
+    //   NavLink.to("/login");
     } catch (err) {
       message.error("Username or password incorrect!");
+      console.log(err);
       setLoading(false);
     }
   };
@@ -33,7 +38,7 @@ const Login = ({history}) => {
     <Row align="middle" justify="center" className="h-100" >
       <Col xs={22} sm={16} md={12} lg={8}>
         <div className="login-card">
-          <img src="betit-logo-dark.svg" alt="betit logo" className="betit-logo" height={25} />
+
           <h3>Please Log-In to continue</h3>
           <Form
             name="normal_login"
@@ -55,6 +60,17 @@ const Login = ({history}) => {
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
             </Form.Item>
             <Form.Item
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your email!',
+                },
+              ]}
+            >
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="email" />
+            </Form.Item>
+            <Form.Item
               name="password"
               rules={[
                 {
@@ -71,10 +87,9 @@ const Login = ({history}) => {
             </Form.Item>
             <Form.Item>
               <Button loading={loading} block type="primary" htmlType="submit" className="login-form-button">
-                Log in
+                Sign up
               </Button>
-              <NavLink to='/register'>Registration</NavLink>
-
+              <NavLink to='/login'>Login in</NavLink>
 
             </Form.Item>
           </Form>
@@ -84,4 +99,4 @@ const Login = ({history}) => {
   );
 };
 
-export default withRouter(Login);
+export default withRouter(Signin);
