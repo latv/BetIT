@@ -30,22 +30,23 @@ const request = async (url, data, method,isAuthorized=true) => {
     return response.data;
   } catch (e) {
     console.log('error: ',e.response.status);
-    if(e.response.status === 401 && isAuthorized === true){
-      try{
-      let response = await request('/api/auth/refresh',{},"GET",false);
+    // if(e.response.status === 401 && isAuthorized === true){
+    //   try{
+    //   let response = await request('/api/auth/refresh',{},"GET",false);
 
-      console.log(response);}catch(e){
-        message.error('you token is expired');
-        jwt.deleteToken();
+    //   console.log(response);}
+      // catch(e){
+      //   message.error('you token is expired');
+      //   jwt.deleteToken();
 
-      }
+      // }
 
     }
 
-    throw e;
+
 
 
   }
-}
+
 
 export default { request };
