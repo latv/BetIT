@@ -14,6 +14,9 @@ const request = async (url, data, method,isAuthorized=true) => {
   {
     requestConfig.headers = {'Authorization': jwt.getHeader()};
   }
+  if (isAuthorized===false){
+    requestConfig.headers = {'Authorization': jwt.getHeader()};
+  }
 
   if (method === 'GET') {
     requestConfig.params = data;
@@ -23,30 +26,34 @@ const request = async (url, data, method,isAuthorized=true) => {
 
   try {
     const response = await axios.request(requestConfig);
-    // if (isAuthorized==true && response.data.response.status === 401){
 
-
-    // }
+  if (url=== '/api/auth/refresh'){
+    console.log('jwt stuff',response.data.token);
+    jwt.deleteToken();
+    jwt.saveToken(response.data.token,response.data.expiresIn);
+  }
     return response.data;
   } catch (e) {
     console.log('error: ',e.response.status);
-    // if(e.response.status === 401 && isAuthorized === true){
-    //   try{
-    //   let response = await request('/api/auth/refresh',{},"GET",false);
+    if(e.response.status === 401 && isAuthorized === true){
+      try{
+      let response = await request('/api/auth/refresh',{},"GET",false);
+      jwt.saveToken(response.token, response.expiresIn);
+      console.log(response);}
+      catch(e){
+        console.log(e);
+        // jwt.deleteToken();
 
-    //   console.log(response);}
-      // catch(e){
-      //   message.error('you token is expired');
-      //   jwt.deleteToken();
-
-      // }
+      }
 
     }
+    throw e;
 
 
 
 
   }
+}
 
 
 export default { request };
