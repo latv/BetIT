@@ -9,6 +9,9 @@ import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './styles.scss';
 import TakeAmountModal from 'components/TakeAmountModal';
+import { LoadingOutlined } from '@ant-design/icons';
+
+
 const { Header, Content, Footer } = Layout;
 const xsWidth = 22;
 const mdWidth = 18;
@@ -56,6 +59,8 @@ const DefaultLayout = () => {
     document.location.reload(true);
   }
 
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
 
   const menu = (
     <Menu>
@@ -87,7 +92,7 @@ const DefaultLayout = () => {
                 <WalletOutlined />
                 </NavLink>
                 <p>My wallet</p>
-                <Spin spinning={isLoading} className="amount-spinner">
+                <Spin spinning={isLoading} className="amount-spinner" indicator={antIcon}>
                   <Dropdown overlay={menu} trigger={['click']}>
                     <p className="amount-with-currency">{numberFormatter.formatMoney(walletAmount)}&euro;</p>
                   </Dropdown>

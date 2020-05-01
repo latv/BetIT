@@ -1,6 +1,9 @@
 import React, {useEffect,useState}from 'react';
 import APIClient from 'utils/apiClient';
 import {Spin} from 'antd';
+import isAuthorized from 'utils/jwt';
+import { LoadingOutlined } from '@ant-design/icons';
+
 const Profile = () => {
 
   const [profile,setProfile]=useState([]);
@@ -19,9 +22,11 @@ const Profile = () => {
     setIsLoading(false);
   }
 
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
   return (
     <div>
-      <Spin spinning={isLoading}>
+      <Spin spinning={isLoading} indicator={antIcon}>
         <h1>Username: {profile.username}</h1>
         <h1>Name: {profile.name}</h1>
         <h1>Last name: {profile.last_name}</h1>
