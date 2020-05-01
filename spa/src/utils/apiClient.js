@@ -38,20 +38,24 @@ const request = async (url, data, method,isAuthorized=true) => {
     console.log('error: ',e.response.status);
     if(e.response.status === 401 && isAuthorized === true){
       try{
-<<<<<<< HEAD
       let response = await request('/api/auth/refresh',{},"GET",false);
       jwt.deleteToken();
       jwt.saveToken(response.token, response.expiresIn);
-      console.log("jwt: ",response);
-=======
-      let response =  request('/api/auth/refresh',{},"GET",false);
-      jwt.deleteToken();
-      jwt.saveToken(response.token, response.expiresIn);
       console.log("response: ",response);
->>>>>>> 92395e37a1e8a6b8cb872ebdd4caba0671116d98
+try{
+      let response_2 = await request(url, data, method,isAuthorized=true);
+      return response_2;} catch(e2){
+        console.log(e);
+        jwt.deleteToken();
+        document.location.reload(true);
+        // jwt.deleteToken();
+      }
+
     }
       catch(e){
         console.log(e);
+        jwt.deleteToken();
+        document.location.reload(true);
         // jwt.deleteToken();
 
       }

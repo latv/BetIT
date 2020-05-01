@@ -13,6 +13,7 @@ class AuthController extends Controller
     public function __construct(RegisterService $registerService)
     {
         $this->registerService = $registerService;
+        // $this->middleware('auth:api', ['except' => ['login']]);
     }
 
     public function login(Request $request)
@@ -82,5 +83,9 @@ class AuthController extends Controller
         $user = auth()->user();
 
         return response()->json($user);
+    }
+    public function guard()
+    {
+        return Auth::guard('api');
     }
 }
