@@ -16,6 +16,7 @@ const request = async (url, data, method,isAuthorized=true) => {
   }
   if (isAuthorized===false){
     requestConfig.headers = {'Authorization': jwt.getHeader()};
+    console.log("not authorizet");
   }
 
   if (method === 'GET') {
@@ -27,19 +28,21 @@ const request = async (url, data, method,isAuthorized=true) => {
   try {
     const response = await axios.request(requestConfig);
 
-  if (url=== '/api/auth/refresh'){
-    console.log('jwt stuff',response.data.token);
-    jwt.deleteToken();
-    jwt.saveToken(response.data.token,response.data.expiresIn);
-  }
+  // if (url=== '/api/auth/refresh'){
+  //   console.log('jwt stuff',response.data.token);
+  //   jwt.deleteToken();
+  //   jwt.saveToken(response.data.token,response.data.expiresIn);
+  // }
     return response.data;
   } catch (e) {
     console.log('error: ',e.response.status);
     if(e.response.status === 401 && isAuthorized === true){
       try{
       let response = await request('/api/auth/refresh',{},"GET",false);
+      jwt.deleteToken();
       jwt.saveToken(response.token, response.expiresIn);
-      console.log(response);}
+      console.log("jwt: ",response);
+    }
       catch(e){
         console.log(e);
         // jwt.deleteToken();
