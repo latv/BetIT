@@ -84,7 +84,8 @@ const DefaultLayout = () => {
         <Row justify="center" >
           <Col xs={xsWidth} md={mdWidth} lg={lgWidth}>
             <NavLink to="/">
-              <img src="betit-logo-light.svg" alt="betit logo" height={40} className="brand-logo" />
+              <img src="betit-logo-light.svg" alt="betit logo" height={40}
+              className="brand-logo" />
             </NavLink>
             <div className="app-header-content">
               <div className="wallet-amount">
@@ -94,7 +95,9 @@ const DefaultLayout = () => {
                 <p>My wallet</p>
                 <Spin spinning={isLoading} className="amount-spinner" indicator={antIcon}>
                   <Dropdown overlay={menu} trigger={['click']}>
-                    <p className="amount-with-currency">{numberFormatter.formatMoney(walletAmount)}&euro;</p>
+                      <p className="amount-with-currency">
+                        {numberFormatter.formatMoney(walletAmount)}&euro;
+                      </p>
                   </Dropdown>
                 </Spin>
               </div>
