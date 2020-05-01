@@ -36,7 +36,7 @@ const Signin = () => {
       // setLoading(false);
       message.info("You are sucesfully registered");
     } catch (err) {
-      message.error("Username or password incorrect!");
+      message.error("error not registered!");
 
       console.log(err);
       setLoading(false);
