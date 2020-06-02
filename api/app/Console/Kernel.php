@@ -3,7 +3,7 @@
 namespace App\Console;
 use App\Console\Commands\SimulateMatch;
 use App\Console\Commands\SimulateUpcomingMatches;
-
+use App\Console\Commands\blockuser;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\GenerateMatch;
@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        GenerateMatch::class
+        GenerateMatch::class,
+        Commands\blockuser::class,
     ];
 
     /**

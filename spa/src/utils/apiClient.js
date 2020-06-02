@@ -16,7 +16,7 @@ const request = async (url, data, method,isAuthorized=true) => {
   }
   if (isAuthorized===false){
     requestConfig.headers = {'Authorization': jwt.getHeader()};
-    console.log("not authorizet");
+    console.log("not authorised");
   }
 
   if (method === 'GET') {
@@ -24,7 +24,7 @@ const request = async (url, data, method,isAuthorized=true) => {
   } else {
     requestConfig.data = data;
   }
-
+  console.log(process.env.REACT_APP_BACKEND_URL);
   try {
     const response = await axios.request(requestConfig);
 
@@ -55,7 +55,7 @@ try{
       catch(e){
         console.log(e);
         jwt.deleteToken();
-        document.location.reload(true);
+        // document.location.reload(true);
         // jwt.deleteToken();
 
       }
