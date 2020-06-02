@@ -18,7 +18,7 @@ Route::get('/', function () {
         'status' => 'OK'
     ]);
 });
-
+Route::group(['middleware' => 'block'], function () {
 Route::group(['middleware' => 'auth.jwt'], function () {
     Route::group(['prefix' => 'bet'], function () {
         Route::post('make-bet', 'BetController@makeBet');
@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         Route::get('get-amount', 'WalletController@getAmount');
         Route::get('get-wallet-actions', 'WalletController@getWalletActions');
     });
+});
 });
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
