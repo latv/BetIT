@@ -18,8 +18,9 @@ Route::get('/', function () {
         'status' => 'OK'
     ]);
 });
-Route::group(['middleware' => 'block'], function () {
+
 Route::group(['middleware' => 'auth.jwt'], function () {
+    Route::group(['middleware' => 'block'], function () {
     Route::group(['prefix' => 'bet'], function () {
         Route::post('make-bet', 'BetController@makeBet');
     });

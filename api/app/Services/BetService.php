@@ -22,13 +22,13 @@ class BetService
         if ($match->is_match_finished) {
             throw new Exception("This match has already finished");
         }
-        
+
         $bet = $match->bets()->where('user_id', $userId)->first();
 
         if ($bet) {
             throw new Exception("You have already made a bet on this match");
         }
-        
+
         switch ($result) {
             case 'team_1_win':
                 $coef = $match->team_1_win_coef;

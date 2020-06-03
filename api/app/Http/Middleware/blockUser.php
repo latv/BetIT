@@ -1,16 +1,15 @@
 <?php
 
+
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\DB;
 use Closure;
-use api\app\User;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 class blockUser
 {
-    public function __construct(User $user)
-    {
-        $this->User = $user;
-        parent::__construct();
-    }
+
+
     /**
      * Handle an incoming request.
      *
@@ -20,14 +19,18 @@ class blockUser
      */
     public function handle($request, Closure $next)
     {
-        // if (DB::table('blocked_users')->where("blockedUserId")->value(auth('api')->user())) {
-        //     return  response()->json(['message' => 'You ar blocked']);
-        // }else{
+    //     if (DB::table('blocked_users')->where("blockedUserId")->value(Auth::user()->id)) {
+    //         return  response()->json(['message' => 'You ar blocked']);
+    //     }else{
 
-         return $next($request);
+    //      return $next($request);
     // }
-        // $user = $this->$user->getJWTIdentifier();
 
-        // return response()->json(compact('token', $user));
+
+    $id = Auth::user()->id;
+    $isfound = DB::table('blocked_users')->where("blockedUserId",$id)->get();
+
+    return response()->json(['token', $id],
+                            ["is found in databse",$isfound]);
     }
 }
