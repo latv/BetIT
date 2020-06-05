@@ -33,7 +33,13 @@ const request = async (url, data, method,isAuthorized=true) => {
   //   jwt.deleteToken();
   //   jwt.saveToken(response.data.token,response.data.expiresIn);
   // }
-    return response.data;
+
+    if (response.data.message == "You have been blocked"){
+
+      message.error("You have been blocked")
+      return [];
+    }else{
+    return response.data;}
   } catch (e) {
     console.log('error: ',e.response.status);
     if(e.response.status === 401 && isAuthorized === true){
