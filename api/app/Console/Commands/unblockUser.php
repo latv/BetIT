@@ -40,6 +40,6 @@ class unblockUser extends Command
         DB::table('blocked_users')->where(
             'blockedUserId',(int)$this->argument('id'))->update(['isBlocked' => false]
         );
-        $this->info("done".$this->argument('id'));
+        $this->info("done, unblock: ".$this->argument('id'));
     }
 }

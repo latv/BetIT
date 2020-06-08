@@ -40,7 +40,7 @@ class blockuser extends Command
         DB::table('blocked_users')->insert(
             ['blockedUserId' => (int)$this->argument('id'), 'isBlocked' => true]
         );
-        $this->info("done".$this->argument('id'));
+        $this->info("done,blocked id: ".$this->argument('id'));
 
     }
 }
