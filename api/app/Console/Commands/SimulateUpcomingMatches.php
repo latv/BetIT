@@ -30,7 +30,7 @@ class SimulateUpcomingMatches extends Command
      */
     public function __construct(MatchService $matchService)
     {
-        
+
         $this->matchService = $matchService;
         parent::__construct();
 
@@ -45,7 +45,7 @@ class SimulateUpcomingMatches extends Command
     {
         //
         try {
-            $matches = $this->matchService->getUpcomingMatchesInThePast();
+            $matches = $this->matchService->getUpcomingMatches();
 
             foreach ($matches as $match) {
                 $this->info('Attempting to simulate match between ' . $match->team_1 . ' and ' . $match->team_2);
