@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+
 
 import APIClient from 'utils/apiClient';
-import numberFormatter from 'utils/numberFormatter';
+
 import './styles.scss';
-import { Spin, Button } from 'antd';
-// import { Chart } from 'react-charts';
+import { Spin} from 'antd';
+
 import { Chart } from "react-google-charts";
-// import Chart from "chart.js";
+
+import { Line } from "react-chartjs-2";
+
 import moment from 'moment'
 
 const HistoryOfWallet = () => {
   const [historyOfWallet, setWallletAmount] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [chartData, setChartData] = useState({});
   useEffect(() => {
     const getWalletAmount = async () => {
       let response = await APIClient.request(
@@ -23,7 +26,7 @@ const HistoryOfWallet = () => {
 
 
 
-      console.log(response);
+      console.log("respone: ",response);
       var dataSet = [];
       for (var i = 0; i < response.length; i++) {
         var a = parseInt(response[i]['remaining']);
@@ -39,7 +42,39 @@ const HistoryOfWallet = () => {
       dataSet.unshift(["Date", "Amount"]);
       // console.log(data);
       setWallletAmount(dataSet);
+
+      let chartJSDataset = [];
+
+      let chartJSLabel = [];
+      for (var i = 0; i < response.length; i++) {
+        chartJSDataset.push(parseInt(response[i]["remaining"]));
+      }
+      for (var i = 0; i < response.length; i++) {
+        chartJSLabel.push(response[i]["created_at"].toLocaleString());
+      }
+
+
+      console.log("chartJSLabel: ",chartJSLabel);
       setIsLoading(false);
+      setChartData({
+        labels: chartJSDataset,
+        datasets: [
+          {
+            label: chartJSLabel,
+            data: chartJSDataset,
+            backgroundColor: ["rgba(75, 192, 192, 0.6)"],
+            borderWidth: 4
+          }
+
+        ],
+        options: {
+          scales: {
+            xAxes: [{
+              type: 'time'
+            }]
+          }
+        }
+      });
 
 
     };
@@ -75,6 +110,8 @@ const HistoryOfWallet = () => {
             enableInteractivity: false,
           }}
         />
+
+        <Line data={chartData} ></Line>
       </div>
 
     </Spin>
