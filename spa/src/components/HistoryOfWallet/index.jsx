@@ -46,10 +46,10 @@ const HistoryOfWallet = () => {
       let chartJSDataset = [];
 
       let chartJSLabel = [];
-      for (var i = 0; i < response.length; i++) {
+      for (var i = response.length-1; i >= 0; i--) {
         chartJSDataset.push(parseInt(response[i]["remaining"]));
       }
-      for (var i = 0; i < response.length; i++) {
+      for (var i = response.length-1; i >= 0; i--) {
         chartJSLabel.push(response[i]["created_at"].toLocaleString());
       }
 
