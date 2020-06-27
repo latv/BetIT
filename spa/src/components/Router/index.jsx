@@ -6,12 +6,13 @@ import Profile from 'pages/Profile';
 import Wallet from 'pages/Wallet';
 import PageNotFound from '../../pages/PageNotFound';
 import HistoryOfWallet from 'components/HistoryOfWallet';
-const Router = ({walletAmount, getWalletAmount}) => {
+const Router = ({walletAmount, getWalletAmount,historyOfWallet}) => {
   return (
     <Switch>
       <Route exact path="/matches" component={Matches} />
       <Route exact path="/">
         <Matches walletAmount={walletAmount}  getWalletAmount={getWalletAmount}/>
+
       </Route>
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/wallet" component={Wallet} />

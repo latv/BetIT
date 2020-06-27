@@ -17,72 +17,72 @@ const HistoryOfWallet = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState({});
   useEffect(() => {
-    const getWalletAmount = async () => {
-      let response = await APIClient.request(
-        '/api/wallet/get-wallet-actions',
-        {},
-        'GET'
-      );
-
-
-
-      console.log("respone: ",response);
-      var dataSet = [];
-      for (var i = 0; i < response.length; i++) {
-        var a = parseInt(response[i]['remaining']);
-        dataSet.push([moment(response[i]['updated_at']).format('dddd, h:mm:ss'), a]);
-
-        // [[response[i]['remaining']],[i]];
-
-
-
-      }
-
-      dataSet.reverse();
-      dataSet.unshift(["Date", "Amount"]);
-      // console.log(data);
-      setWallletAmount(dataSet);
-
-      let chartJSDataset = [];
-
-      let chartJSLabel = [];
-      for (var i = response.length-1; i >= 0; i--) {
-        chartJSDataset.push(parseInt(response[i]["remaining"]));
-      }
-      for (var i = response.length-1; i >= 0; i--) {
-        chartJSLabel.push(response[i]["created_at"].toLocaleString());
-      }
-
-
-      console.log("chartJSLabel: ",chartJSLabel);
-      setIsLoading(false);
-      setChartData({
-        labels: chartJSDataset,
-        datasets: [
-          {
-            label: chartJSLabel,
-            data: chartJSDataset,
-            backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-            borderWidth: 4
-          }
-
-        ],
-        options: {
-          scales: {
-            xAxes: [{
-              type: 'time'
-            }]
-          }
-        }
-      });
-
-
-    };
-
-    getWalletAmount();
-
+    getWalletActions()
   }, []);
 
+  const getWalletActions = async () => {
+    let response = await APIClient.request(
+      '/api/wallet/get-wallet-actions',
+      {},
+      'GET'
+    );
+
+
+
+    console.log("respone: ",response);
+    var dataSet = [];
+    for (var i = 0; i < response.length; i++) {
+      var a = parseInt(response[i]['remaining']);
+      dataSet.push([moment(response[i]['updated_at']).format('dddd, h:mm:ss'), a]);
+
+      // [[response[i]['remaining']],[i]];
+
+
+
+    }
+
+    dataSet.reverse();
+    dataSet.unshift(["Date", "Amount"]);
+    // console.log(data);
+    setWallletAmount(dataSet);
+
+    let chartJSDataset = [];
+
+    let chartJSLabel = [];
+    for (var i = response.length-1; i >= 0; i--) {
+      chartJSDataset.push(parseInt(response[i]["remaining"]));
+    }
+    for (var i = response.length-1; i >= 0; i--) {
+      chartJSLabel.push(response[i]["created_at"].toLocaleString());
+    }
+
+
+    console.log("chartJSLabel: ",chartJSLabel);
+    setIsLoading(false);
+    setChartData({
+      labels: chartJSDataset,
+      datasets: [
+        {
+          label: chartJSLabel,
+          data: chartJSDataset,
+          backgroundColor: ["rgba(75, 192, 192, 0.6)"],
+          borderWidth: 4
+        }
+
+      ],
+      options: {
+        scales: {
+          xAxes: [{
+            type: 'time'
+          }]
+        }
+      }
+    });
+
+
+  };
+
+  getWalletActions();
 
 
   return (
