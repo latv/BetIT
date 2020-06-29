@@ -54,8 +54,8 @@ const BetModal = ({
       console.error(err);
       const errorResponse = err.response;
 
-      if (errorResponse.status === 422) {
-        message.error(errorResponse.data.message);
+      if (errorResponse === 422 ) {
+        message.error(errorResponse);
       } else {
         message.error("Transaction failed!");
       }
@@ -104,7 +104,7 @@ const BetModal = ({
           }
         }} />
         <Slider
-          defaultValue={DEFAULT_BET_AMOUNT} 
+          defaultValue={DEFAULT_BET_AMOUNT}
           max={maxBetAmount}
           min={0.01}
           step={0.01}

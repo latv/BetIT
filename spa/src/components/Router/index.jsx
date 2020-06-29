@@ -12,7 +12,6 @@ const Router = ({walletAmount, getWalletAmount,historyOfWallet}) => {
       <Route exact path="/matches" component={Matches} />
       <Route exact path="/">
         <Matches walletAmount={walletAmount}  getWalletAmount={getWalletAmount}/>
-
       </Route>
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/wallet" component={Wallet} />
