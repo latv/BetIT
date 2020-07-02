@@ -10,7 +10,7 @@ import { Chart } from "react-google-charts";
 
 import { Line } from "react-chartjs-2";
 
-import moment from 'moment'
+import moment from 'moment';
 
 const HistoryOfWallet = () => {
   const [historyOfWallet, setWallletAmount] = useState([]);

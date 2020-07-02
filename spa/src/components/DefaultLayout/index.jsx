@@ -11,7 +11,7 @@ import './styles.scss';
 import TakeAmountModal from 'components/TakeAmountModal';
 import { LoadingOutlined } from '@ant-design/icons';
 
-
+import Clock from 'react-live-clock';
 const { Header, Content, Footer } = Layout;
 const xsWidth = 22;
 const mdWidth = 18;
@@ -89,6 +89,7 @@ const DefaultLayout = () => {
             </NavLink>
             <div className="app-header-content">
               <div className="wallet-amount">
+                <p><Clock format={'HH:mm:ss'} ticking={true} timezone={'GMT+3'} /></p>
               <NavLink to="/wallet">
                 <WalletOutlined />
                 </NavLink>
