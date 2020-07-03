@@ -87,9 +87,13 @@ const DefaultLayout = () => {
               <img src="betit-logo-light.svg" alt="betit logo" height={40}
               className="brand-logo" />
             </NavLink>
+
             <div className="app-header-content">
+            <div className='center'>
+                 <p><Clock format={'HH:mm:ss'} ticking={true} timezone={'GMT+3'} /></p>
+               </div>
               <div className="wallet-amount">
-                <p><Clock format={'HH:mm:ss'} ticking={true} timezone={'GMT+3'} /></p>
+                
               <NavLink to="/wallet">
                 <WalletOutlined />
                 </NavLink>
