@@ -1,17 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Tabs, Table } from 'antd';
+import { Tabs, Table ,Spin} from 'antd';
 import APIClient from 'utils/apiClient';
 import moment from 'moment';
 import Button from 'components/Button';
 import BetModal from 'components/BetModal';
+
+import MatchCards from 'components/MatchCards';
 import './styles.scss';
 import Nuberfromarter from 'utils/numberFormatter';
 const { TabPane } = Tabs;
 const myBetsKey = "my-bets";
 const matchesKey = "matches";
 
+function useWindowsWidthSize(){
+
+  const [size,setSize] = useState([window.innerHeight,window.innerWidth]);
+  // return width;
+  
+
+useEffect(() => {
+    const handleReSize = () =>{
+    setSize([window.innerHeight,window.innerWidth]);
+  };
+  window.addEventListener("resize",handleReSize);
+  return () =>{
+    window.removeEventListener("resize",handleReSize);
+  }
+},[]);
+return size;
+}
+
+
+
+
+
 const Matches = ({ walletAmount, getWalletAmount }) => {
+  const [height,width]= useWindowsWidthSize();
   const [matches, setMatches] = useState([]);
+  const [isMatchesLoading, isSetMatchesLoading] = useState(true);
   const [isBetModalVisible, setIsBetModalVisible] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState({});
 
@@ -23,6 +49,7 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
 
 
   const getMatches = async () => {
+
     let response = await APIClient.request(
       '/api/match/get-upcoming-matches',
       {},
@@ -32,6 +59,7 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
     console.log(response);
 
     setMatches(response);
+    isSetMatchesLoading(false);
   }
 
 
@@ -101,7 +129,14 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
     <>
       <Tabs defaultActiveKey="matches" onChange={(key) => tabChanged(key)}>
         <TabPane tab="Matches" key={matchesKey}>
-          <Table className="matches-table" rowKey="id" dataSource={matches} columns={columns} pagination={false} />
+          <Spin spinning={isMatchesLoading}>
+            {width<650?<MatchCards  walletAmount={walletAmount} />: <Table className="matches-table" rowKey="id" dataSource={matches} columns={columns} pagination={false} />}
+            
+            
+            {/* <div>{matches.forEach((e)=> console.log("b"))}</div> */}
+            
+          </Spin>
+          
         </TabPane>
         <TabPane tab="My bets" key={myBetsKey}>
           <Table className="matches-table" rowKey="id" dataSource={matches.filter(el => el.amount)} columns={columns} pagination={false} />
