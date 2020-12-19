@@ -90,14 +90,14 @@ const DefaultLayout = () => {
 
             <div className="app-header-content">
             <div className='center'>
-                 <p><Clock format={'HH:mm:ss'} ticking={true} timezone={'GMT+3'} /></p>
+                 <p className="isHiden"><Clock format={'HH:mm:ss'} ticking={true} timezone={'GMT+3'} /></p>
                </div>
               <div className="wallet-amount">
                 
               <NavLink to="/wallet">
                 <WalletOutlined />
                 </NavLink>
-                <p>My wallet</p>
+                <p className="myWallet">My wallet</p>
                 <Spin spinning={isLoading} className="amount-spinner" indicator={antIcon}>
                   <Dropdown overlay={menu} trigger={['click']}>
                       <p className="amount-with-currency">

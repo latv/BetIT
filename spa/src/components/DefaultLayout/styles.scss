@@ -91,3 +91,15 @@ span.erro-message{
   left: 50%;
   font-weight: bold;
 }
+@media only screen and (max-width: 650px) {
+  .isHiden{
+    display: none;
+
+  }
+}
+@media only screen and (max-width: 340px) {
+  .myWallet{
+    display: none;
+
+  }
+}

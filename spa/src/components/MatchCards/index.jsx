@@ -53,9 +53,9 @@ const Cards = (walletAmount) => {
 
         <div className="cards">
             
-  
+            <Spin spinning={isMatchesLoading}>
                     {listItems(matches)}
-      
+            </Spin>
           
         </div>
      
