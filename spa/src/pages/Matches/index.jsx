@@ -40,6 +40,7 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
   const [isMatchesLoading, isSetMatchesLoading] = useState(true);
   const [isBetModalVisible, setIsBetModalVisible] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState({});
+  const [ifMybets, setIfMybets] = useState(0);
 
   useEffect(() => {
 
@@ -127,19 +128,22 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
 
   return (
     <>
+  
       <Tabs defaultActiveKey="matches" onChange={(key) => tabChanged(key)}>
         <TabPane tab="Matches" key={matchesKey}>
           <Spin spinning={isMatchesLoading}>
-            {width<650?<MatchCards  walletAmount={walletAmount} />: <Table className="matches-table" rowKey="id" dataSource={matches} columns={columns} pagination={false} />}
+            
+            {width<650? <MatchCards  walletAmount={walletAmount} ifMyBets={ifMybets} />: <Table className="matches-table" rowKey="id" dataSource={matches} columns={columns} pagination={false} />}
             
             
-            {/* <div>{matches.forEach((e)=> console.log("b"))}</div> */}
+  
             
           </Spin>
           
         </TabPane>
         <TabPane tab="My bets" key={myBetsKey}>
-          <Table className="matches-table" rowKey="id" dataSource={matches.filter(el => el.amount)} columns={columns} pagination={false} />
+        {width<650?<MatchCards  walletAmount={walletAmount} ifMyBets={ifMybets} />:           <Table className="matches-table" rowKey="id" dataSource={matches.filter(el => el.amount)} columns={columns} pagination={false} />}
+
         </TabPane>
       </Tabs>
       <BetModal

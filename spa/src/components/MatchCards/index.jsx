@@ -5,7 +5,7 @@ import APIClient from '../../utils/apiClient';
 import './styles.scss';
 
 
-const Cards = (walletAmount) => {
+const Cards = (walletAmount,ifMyBets) => {
     const [isMatchesLoading, isSetMatchesLoading] = useState(true);
     const [matches, setMatches] = useState([]);
     const getMatches = async () => {
@@ -15,10 +15,13 @@ const Cards = (walletAmount) => {
           {},
           'GET'
         );
-    
+        console.log("ifMybets: ",ifMyBets);
         console.log(response);
-    
-        setMatches(response);
+        if (ifMyBets===true){
+            setMatches(response.filter(el => el.amount));
+        }else if(ifMyBets===false) {
+            setMatches(response);
+    }
         isSetMatchesLoading(false);
       }
       useEffect(() => {
