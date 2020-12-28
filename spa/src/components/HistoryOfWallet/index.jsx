@@ -82,7 +82,7 @@ const HistoryOfWallet = () => {
 
   };
 
-  getWalletActions();
+
 
 
   return (

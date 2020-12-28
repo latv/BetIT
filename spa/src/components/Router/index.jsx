@@ -5,7 +5,7 @@ import Matches from 'pages/Matches';
 import Profile from 'pages/Profile';
 import Wallet from 'pages/Wallet';
 import PageNotFound from '../../pages/PageNotFound';
-import HistoryOfWallet from 'components/HistoryOfWallet';
+
 const Router = ({walletAmount, getWalletAmount,historyOfWallet}) => {
   return (
     <Switch>
@@ -15,7 +15,7 @@ const Router = ({walletAmount, getWalletAmount,historyOfWallet}) => {
       </Route>
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/wallet" component={Wallet} />
-      <Route exact path="/get-wallet-actions" component={HistoryOfWallet} />
+    
       <Route exact path="/profile" component={Profile} />
       <Route exact path="*" component={PageNotFound} />
 

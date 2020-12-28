@@ -10,26 +10,28 @@ const Wallet = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getWalletActions = async () => {
-      try {
-        let response = await APIClient.request(
-          '/api/wallet/get-wallet-actions',
-          {},
-          'GET'
-        );
 
-        setWalletActions(response);
-        console.log(response['remaining']);
-      } catch (err) {
-        message.error("Data fetch failed!");
-      } finally {
-        setIsLoading(false);
-      }
-
-    }
 
     getWalletActions();
   }, []);
+
+  const getWalletActions = async () => {
+    try {
+      let response = await APIClient.request(
+        '/api/wallet/get-wallet-actions',
+        {},
+        'GET'
+      );
+
+      setWalletActions(response);
+      console.log(response['remaining']);
+    } catch (err) {
+      message.error("Data fetch failed!");
+    } finally {
+      setIsLoading(false);
+    }
+
+  }
 
   const columns = [
     {
@@ -68,7 +70,7 @@ const Wallet = () => {
 
   return (
     <><HistoryOfWallet/>
-    <hr className='hr-line'/ >
+    <hr className='hr-line' / >
           <Table rowKey={"id"} dataSource={walletActions} columns={columns} loading={isLoading} /></>
   )
 }

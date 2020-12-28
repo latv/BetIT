@@ -1,3 +1,5 @@
+@import 'assets/scss/_variables.scss';
+
 .cards {
  
     display: grid;
@@ -11,3 +13,22 @@
     }
     
 @media screen and (min-width:650px) { grid-template-columns: repeat(grid-auto-rows, 1fr); }
+
+.bet-amount {
+    border:1px dashed $primaryColor;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:700;
+    text-align:center;
+    padding: 4px 15px;
+    color:$backgroundColor;
+    width: 100%;
+  }
+
+p{
+    text-align: center;
+}
+.card{
+    width: 250px;
+    
+}

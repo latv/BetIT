@@ -4,8 +4,8 @@ import APIClient from 'utils/apiClient';
 import moment from 'moment';
 import Button from 'components/Button';
 import BetModal from 'components/BetModal';
-
 import MatchCards from 'components/MatchCards';
+
 import './styles.scss';
 import Nuberfromarter from 'utils/numberFormatter';
 const { TabPane } = Tabs;
@@ -40,7 +40,7 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
   const [isMatchesLoading, isSetMatchesLoading] = useState(true);
   const [isBetModalVisible, setIsBetModalVisible] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState({});
-  const [ifMybets, setIfMybets] = useState(0);
+
 
   useEffect(() => {
 
@@ -67,6 +67,7 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
   const tabChanged = (key) => {
 
   }
+  const walletEmpty = walletAmount < 0.01;
 
   const columns = [
     {
@@ -133,7 +134,8 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
         <TabPane tab="Matches" key={matchesKey}>
           <Spin spinning={isMatchesLoading}>
             
-            {width<650? <MatchCards  walletAmount={walletAmount} ifMyBets={ifMybets} />: <Table className="matches-table" rowKey="id" dataSource={matches} columns={columns} pagination={false} />}
+            {width<650? <MatchCards  matches={matches} isMatchesLoading={isMatchesLoading} walletEmpty={walletEmpty} 
+            walletAmount={walletAmount} selectedMatch={selectedMatch} getMatches={getMatches} getWalletAmount={getWalletAmount} setIsBetModalVisible={setIsBetModalVisible}/>: <Table className="matches-table" rowKey="id" dataSource={matches} columns={columns} pagination={false} />}
             
             
   
@@ -142,7 +144,7 @@ const Matches = ({ walletAmount, getWalletAmount }) => {
           
         </TabPane>
         <TabPane tab="My bets" key={myBetsKey}>
-        {width<650?<MatchCards  walletAmount={walletAmount} ifMyBets={ifMybets} />:           <Table className="matches-table" rowKey="id" dataSource={matches.filter(el => el.amount)} columns={columns} pagination={false} />}
+        {width<650?<MatchCards  matches={matches.filter(el => el.amount)} getMatches={getMatches} getWalletAmount={getWalletAmount} isMatchesLoading={isMatchesLoading}  walletEmpty={walletEmpty} selectedMatch={selectedMatch} setIsBetModalVisible={setIsBetModalVisible}/>:           <Table className="matches-table" rowKey="id" dataSource={matches.filter(el => el.amount)} columns={columns} pagination={false} />}
 
         </TabPane>
       </Tabs>
