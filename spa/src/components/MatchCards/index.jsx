@@ -39,7 +39,7 @@ const Cards = ({matches,isMatchesLoading,walletEmpty,walletAmount,getWalletAmoun
     
 
     
-          <Button
+          <Button className="bet-btn"
             onClick={() => {
               setSelectedMatch(match);
               setIsBetModalVisible(true);
