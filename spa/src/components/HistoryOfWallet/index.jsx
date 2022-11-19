@@ -8,7 +8,7 @@ import { Spin} from 'antd';
 
 import { Chart } from "react-google-charts";
 
-import { Line } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 
 import moment from 'moment';
 
@@ -90,7 +90,7 @@ const HistoryOfWallet = () => {
       spinning={isLoading}
     >
       <div className='chart'>
-        <Chart
+        {/* <Chart
           chartType="Line"
           loader={<div />}
           data={historyOfWallet}
@@ -111,7 +111,7 @@ const HistoryOfWallet = () => {
           }}
         />
 
-        <Line data={chartData} ></Line>
+        <Line data={chartData} ></Line> */}
       </div>
 
     </Spin>

@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "doctrine/dbal": "^2.10",
+        "doctrine/dbal": "^2.13",
         "fideloper/proxy": "^4.0",
         "google/cloud-error-reporting": "^0.16.2",
         "google/cloud-logging": "^1.20",
@@ -22,7 +22,7 @@
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^7.2"
     },
     "config": {
         "optimize-autoloader": true,
@@ -51,7 +51,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-
 
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

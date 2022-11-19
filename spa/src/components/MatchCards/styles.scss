@@ -12,7 +12,9 @@
      
     }
     
-@media screen and (min-width:650px) { grid-template-columns: repeat(grid-auto-rows, 1fr); }
+@media screen and (min-width:650px) { 
+    // grid-template-columns : repeat(grid-auto-rows, 1fr); 
+}
 
 .bet-amount {
     border:1px dashed $primaryColor;
