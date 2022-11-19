@@ -6,7 +6,7 @@ import APIClient from 'utils/apiClient';
 import './styles.scss';
 import { Spin} from 'antd';
 
-import { Chart } from "react-google-charts";
+// import { Chart } from "react-google-charts";
 
 // import { Line } from "react-chartjs-2";
 

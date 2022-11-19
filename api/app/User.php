@@ -36,7 +36,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $casts = [
-        'birthday' => 'datetime',
+        'birthday' => 'date:Y.m.d',
     ];
 
     public function getJWTIdentifier()

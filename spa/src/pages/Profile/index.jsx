@@ -17,7 +17,7 @@ const Profile = () => {
       {},
       'GET'
     );
-
+    console.log(response);
     setProfile(response);
     setIsLoading(false);
   }
