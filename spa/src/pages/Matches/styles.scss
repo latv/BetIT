@@ -18,7 +18,7 @@ $tableContentColor: #485E75;
   }
 
   .ant-tabs-ink-bar {
-    background-color: $primaryColor;
+    background-color: $primaryColor !important;
     height: 5px;
   }
 
@@ -43,13 +43,13 @@ $tableContentColor: #485E75;
     }
 
     .bet-amount {
-      border:1px dashed $primaryColor;
+      border:1px dashed $primaryColor !important;
       border-radius:8px;
       font-size:14px;
       font-weight:700;
       text-align:center;
       padding: 4px 15px;
-      color:$backgroundColor;
+      color:$backgroundColor !important;
       width: 100%;
     }
   }

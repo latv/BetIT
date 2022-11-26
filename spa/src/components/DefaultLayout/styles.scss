@@ -1,7 +1,7 @@
 @import 'assets/scss/_variables.scss';
 
 .app-header {
-  background-color: $headerColor;
+  background-color: #4E41EA !important;
   padding: 0;
   color: white;
 
@@ -34,10 +34,11 @@
 
       }
 .amount-spinner{
-  background-color: $headerColor;
+  background-color: #4E41EA !important;
 }
 
       .wallet-amount {
+        color: white;
         display: flex;
         
         p {
@@ -53,20 +54,20 @@
           margin-left: 5px;
         }
         .amount-spinner {
-          background-color: $headerColor;}
+          background-color: #4E41EA !important;}
       }
     }
   }
 }
 
 .app-footer {
-  background-color: $backgroundColor;
+  background-color: $backgroundColor !important;
   padding: 40px 0;
-  color: $footerTextLogo;
+  color: $footerTextLogo !important;
 }
 
 .app-content {
-  background-color: $backgroundColor;
+  background-color: $backgroundColor !important;
 
   .app-container {
     margin-top: 32px;
@@ -94,12 +95,12 @@ span.erro-message{
 @media only screen and (max-width: 650px) {
   .isHiden{
     display: none;
-
+    color: white;
   }
 }
 @media only screen and (max-width: 340px) {
   .myWallet{
     display: none;
-
+    color: white;
   }
 }

@@ -2,6 +2,7 @@ import React, {useEffect,useState}from 'react';
 import APIClient from 'utils/apiClient';
 import {Spin} from 'antd';
 import isAuthorized from 'utils/jwt';
+import { Input } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const Profile = () => {
@@ -27,7 +28,7 @@ const Profile = () => {
   return (
     <div>
       <Spin spinning={isLoading} indicator={antIcon}>
-        <h1>Username: {profile.username}</h1>
+        <h1>Username: { profile.username && <Input value='profile.username' />}</h1>
         <h1>Name: {profile.name}</h1>
         <h1>Last name: {profile.last_name}</h1>
         <h1>Birthday: {profile.birthday}</h1>

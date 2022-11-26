@@ -109,7 +109,7 @@ const DefaultLayout = () => {
               <NavLink to="/profile">
                 <UserOutlined />
               </NavLink>
-              <LogoutOutlined onClick={logOut} />
+              <LogoutOutlined onClick={logOut} style={{color: 'red'}}/>
             </div>
           </Col>
         </Row>

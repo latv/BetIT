@@ -4,11 +4,11 @@
   "proxy": "http://127.0.0.1:8000",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^4.0.2",
+    "@ant-design/icons": "^4.8.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "antd": "^4.2.0",
+    "antd": "^5.0.1",
     "axios": "^0.19.2",
     "chat.js": "^1.0.2",
     "exp": "^57.2.1",
