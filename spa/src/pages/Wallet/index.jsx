@@ -5,15 +5,14 @@ import NumberFormatter from 'utils/numberFormatter';
 import moment from 'moment';
 import HistoryOfWallet from 'components/HistoryOfWallet'
 import './styles.scss';
-const Wallet = () => {
+
+const Wallet = ({ walletAmount }) => {
   const [walletActions, setWalletActions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
-
     getWalletActions();
-  }, []);
+  }, [walletAmount]);
 
   const getWalletActions = async () => {
     try {
@@ -69,9 +68,11 @@ const Wallet = () => {
   ];
 
   return (
-    <><HistoryOfWallet/>
-    <hr className='hr-line' / >
-          <Table rowKey={"id"} dataSource={walletActions} columns={columns} loading={isLoading} /></>
+    <>
+    <HistoryOfWallet walletAmount={walletAmount} />
+      <hr className='hr-line' / >
+      <Table rowKey={"id"} dataSource={walletActions} columns={columns} loading={isLoading} />
+    </>
   )
 }
 

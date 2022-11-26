@@ -6,7 +6,6 @@ const request = async (url, data, method,isAuthorized=true) => {
   const requestConfig = {
     url: url,
     method: method,
-    baseURL: process.env.REACT_APP_BACKEND_URL,
     responseType: 'json',
     // headers: {'Authorization': jwt.getHeader()},
   };
@@ -24,7 +23,6 @@ const request = async (url, data, method,isAuthorized=true) => {
   } else {
     requestConfig.data = data;
   }
-  console.log(process.env.REACT_APP_BACKEND_URL);
   try {
     const response = await axios.request(requestConfig);
 

@@ -6,19 +6,19 @@ import APIClient from 'utils/apiClient';
 import './styles.scss';
 import { Spin} from 'antd';
 
-// import { Chart } from "react-google-charts";
+import { Chart } from "react-google-charts";
 
 // import { Line } from "react-chartjs-2";
 
 import moment from 'moment';
 
-const HistoryOfWallet = () => {
+const HistoryOfWallet = ({walletAmount}) => {
   const [historyOfWallet, setWallletAmount] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState({});
   useEffect(() => {
     getWalletActions()
-  }, []);
+  }, [walletAmount]);
 
   const getWalletActions = async () => {
     let response = await APIClient.request(
@@ -90,7 +90,7 @@ const HistoryOfWallet = () => {
       spinning={isLoading}
     >
       <div className='chart'>
-        {/* <Chart
+        <Chart
           chartType="Line"
           loader={<div />}
           data={historyOfWallet}
@@ -111,7 +111,7 @@ const HistoryOfWallet = () => {
           }}
         />
 
-        <Line data={chartData} ></Line> */}
+    
       </div>
 
     </Spin>
