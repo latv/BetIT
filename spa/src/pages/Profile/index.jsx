@@ -1,9 +1,10 @@
 import React, {useEffect,useState}from 'react';
 import APIClient from 'utils/apiClient';
-import {Spin} from 'antd';
+import {Skeleton, Spin} from 'antd';
 import isAuthorized from 'utils/jwt';
 import { Input } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
+import './styles.scss';
 
 const Profile = () => {
 
@@ -23,17 +24,19 @@ const Profile = () => {
     setIsLoading(false);
   }
 
-  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
 
   return (
-    <div>
-      <Spin spinning={isLoading} indicator={antIcon}>
-        <h1>Username: { profile.username && <Input value='profile.username' />}</h1>
+    <div className='profile-wrapper'>
+      
+      <Skeleton loading={isLoading}>
+        <p>Username</p>
+        <Input defaultValue={profile.username} size='small' prefix={<UserOutlined />}/>
         <h1>Name: {profile.name}</h1>
         <h1>Last name: {profile.last_name}</h1>
         <h1>Birthday: {profile.birthday}</h1>
         <h1>Adress: {profile.address}</h1>
-      </Spin>
+      </Skeleton>
     </div>
   )
 }
