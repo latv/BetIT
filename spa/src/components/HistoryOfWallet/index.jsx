@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import APIClient from 'utils/apiClient';
 
 import './styles.scss';
-import { Spin} from 'antd';
+import { Skeleton} from 'antd';
 
 import { Chart } from "react-google-charts";
 
@@ -58,7 +58,7 @@ const HistoryOfWallet = ({walletAmount}) => {
 
 
     console.log("chartJSLabel: ",chartJSLabel);
-    setIsLoading(false);
+
     setChartData({
       labels: chartJSDataset,
       datasets: [
@@ -78,7 +78,7 @@ const HistoryOfWallet = ({walletAmount}) => {
         }
       }
     });
-
+    setIsLoading(false);
 
   };
 
@@ -86,8 +86,8 @@ const HistoryOfWallet = ({walletAmount}) => {
 
 
   return (
-    <Spin
-      spinning={isLoading}
+    <Skeleton
+      loading={isLoading}
     >
       <div className='chart'>
         <Chart
@@ -114,7 +114,7 @@ const HistoryOfWallet = ({walletAmount}) => {
     
       </div>
 
-    </Spin>
+    </Skeleton>
 
   );
 
