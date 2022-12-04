@@ -30,12 +30,19 @@ const Profile = () => {
     <div className='profile-wrapper'>
       
       <Skeleton loading={isLoading}>
-        <p>Username</p>
+        
+        <label ><b>Username</b></label>
+        <br />
         <Input defaultValue={profile.username} size='small' prefix={<UserOutlined />}/>
-        <h1>Name: {profile.name}</h1>
-        <h1>Last name: {profile.last_name}</h1>
-        <h1>Birthday: {profile.birthday}</h1>
-        <h1>Adress: {profile.address}</h1>
+        <label ><b>Name</b></label>
+        <Input defaultValue={profile.name} size='small' prefix={<UserOutlined />}/>
+        <label ><b>Last name</b></label>
+        <Input defaultValue={profile.last_name} size='small' prefix={<UserOutlined />}/>
+        <label ><b>Birthday</b></label>
+        <Input defaultValue={profile.birthday} size='small' />
+        <label ><b>Adress</b></label>
+        <Input defaultValue={profile.adress} size='small' />
+
       </Skeleton>
     </div>
   )
