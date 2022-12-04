@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Tag, message } from 'antd';
+import { Table, Tag, message,Skeleton } from 'antd';
 import APIClient from 'utils/apiClient';
 import NumberFormatter from 'utils/numberFormatter';
 import moment from 'moment';
@@ -69,9 +69,11 @@ const Wallet = ({ walletAmount }) => {
 
   return (
     <>
-    <HistoryOfWallet walletAmount={walletAmount} />
+      <HistoryOfWallet walletAmount={walletAmount} />
       <hr className='hr-line' / >
+      <Skeleton loading={isLoading}>
       <Table rowKey={"id"} dataSource={walletActions} columns={columns} loading={isLoading} />
+      </Skeleton>
     </>
   )
 }

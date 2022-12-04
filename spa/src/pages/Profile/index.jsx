@@ -32,7 +32,6 @@ const Profile = () => {
       <Skeleton loading={isLoading}>
         
         <label ><b>Username</b></label>
-        <br />
         <Input defaultValue={profile.username} size='small' prefix={<UserOutlined />}/>
         <label ><b>Name</b></label>
         <Input defaultValue={profile.name} size='small' prefix={<UserOutlined />}/>
