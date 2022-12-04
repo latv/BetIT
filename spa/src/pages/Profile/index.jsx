@@ -2,7 +2,7 @@ import React, {useEffect,useState}from 'react';
 import APIClient from 'utils/apiClient';
 import {Skeleton, Spin} from 'antd';
 import isAuthorized from 'utils/jwt';
-import { Input } from 'antd';
+import { Input,DatePicker } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import './styles.scss';
 
@@ -38,7 +38,10 @@ const Profile = () => {
         <label ><b>Last name</b></label>
         <Input defaultValue={profile.last_name} size='small' prefix={<UserOutlined />}/>
         <label ><b>Birthday</b></label>
-        <Input defaultValue={profile.birthday} size='small' />
+        <DatePicker 
+        format='YYYY.MM.DD'
+        // defaultPickerValue={profile.birthday} 
+          />
         <label ><b>Adress</b></label>
         <Input defaultValue={profile.adress} size='small' />
 

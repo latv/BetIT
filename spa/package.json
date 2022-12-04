@@ -93,6 +93,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.19.0",
     "sass": "^1.56.1"
   },
   "jest": {
