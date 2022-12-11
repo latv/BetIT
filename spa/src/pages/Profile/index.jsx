@@ -1,11 +1,11 @@
 import React, {useEffect,useState}from 'react';
 import APIClient from 'utils/apiClient';
 import {Skeleton, Spin} from 'antd';
-import isAuthorized from 'utils/jwt';
-import { Input,DatePicker } from 'antd';
+// import isAuthorized from 'utils/jwt';
+import { Input,DatePicker,Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import './styles.scss';
-
+import dayjs from 'dayjs';
 const Profile = () => {
 
   const [profile,setProfile]=useState([]);
@@ -33,19 +33,32 @@ const Profile = () => {
         
         <label ><b>Username</b></label>
         <Input defaultValue={profile.username} size='small' prefix={<UserOutlined />}/>
+
         <label ><b>Name</b></label>
         <Input defaultValue={profile.name} size='small' prefix={<UserOutlined />}/>
+
         <label ><b>Last name</b></label>
         <Input defaultValue={profile.last_name} size='small' prefix={<UserOutlined />}/>
-        <label ><b>Birthday</b></label>
-        <DatePicker 
-        format='YYYY.MM.DD'
-        // defaultPickerValue={profile.birthday} 
-          />
+
+        <div className="date-wrapper">
+          <label ><b>Birthday</b></label>
+          <span id='birthday-date'>
+            <DatePicker 
+            format='DD.MM.YYYY'
+            defaultValue={dayjs(profile.birthday,'YYYY.mm.dd')} 
+              />
+          </span>
+        </div>
+
         <label ><b>Adress</b></label>
-        <Input defaultValue={profile.adress} size='small' />
+        <Input value={profile.adress} size='small' />
+
+        <div className="save-profile">
+          <Button>Update</Button>
+        </div>
 
       </Skeleton>
+     
     </div>
   )
 }

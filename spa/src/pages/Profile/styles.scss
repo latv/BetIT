@@ -1,7 +1,7 @@
 .profile-wrapper{
     margin: auto;
     width: 80%;
-
+    height: 250px;
     p{
         padding-left: 0px;
         color: black;
@@ -10,4 +10,17 @@
 }
 label b{
     margin-top: 5px;
+}
+#birthday-date{
+    margin-left: 5px;
+    margin-top: 2px;
+}
+.date-wrapper{
+    margin-top: 3px;
+    margin-bottom: 1px;
+}
+.save-profile{
+
+    margin-top: 10px;
+    float: right;
 }
